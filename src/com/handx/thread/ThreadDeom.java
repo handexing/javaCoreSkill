@@ -8,10 +8,29 @@ package com.handx.thread;
  */
 class MyThread extends Thread {
 	
+
 	@Override
 	public void run() {
-		super.run();
-		System.out.println("hello MyThread!");
+		// sleep
+		// synchronized (MyThread.this) {
+		// try {
+		// System.out.println("线程" + Thread.currentThread().getName() +
+		// "进入睡眠状态");
+		// Thread.currentThread().sleep(10000);
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
+		// System.out.println("线程" + Thread.currentThread().getName() + "睡眠结束");
+		// }
+
+		if ("A".equals(Thread.currentThread().getName())) {
+			System.out.println(Thread.currentThread().getName() + "::让出CPU权限！");
+			Thread.currentThread().yield();
+		}
+		System.out.println("A让出了，执行B，然后在执行A");
+		boolean alive = Thread.currentThread().isAlive();
+		System.out.println(alive);
+
 	}
 	
 }
@@ -19,8 +38,17 @@ class MyThread extends Thread {
 public class ThreadDeom {
 
 	public static void main(String[] args) {
-		MyThread thread = new MyThread();
-		thread.start();
-		System.out.println("run end.");
+
+		// 返回当前线程
+		// System.out.println(Thread.currentThread().getName());
+		//
+		MyThread thread1 = new MyThread();
+		thread1.setName("A");
+		MyThread thread2 = new MyThread();
+		thread2.setName("B");
+		thread1.start();
+		thread2.start();
+
 	}
+
 }
