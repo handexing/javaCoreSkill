@@ -1,0 +1,69 @@
+package com.handx.java.reflect;
+
+public class Person {
+
+	private String name;
+	private int age;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + "]";
+	}
+
+	public Person(String name) {
+		super();
+		this.name = name;
+	}
+
+	public Person(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+
+	public Person() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	class Child {
+		
+		private String sex;
+
+		private String getName(String name) {
+			return name;
+		}
+
+		public Child() {
+			super();
+		}
+
+		public Child(String sex) {
+			super();
+			this.sex = sex;
+		}
+
+		@Override
+		public String toString() {
+			return "child [sex=" + sex + "]";
+		}
+
+	}
+
+}
