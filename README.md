@@ -6,6 +6,15 @@
 
 ## 多线程
 
+### 线程与进程
+
+> 一个进程是一个独立(self contained)的运行环境，它可以被看作一个程序或者一个应用。而线程是在进程中执行的一个任务。线程是进程的子集，一个进程可以有很多线程，每条线程并行执行不同的任务。不同的进程使用不同的内存空间，而所有的线程共享一片相同的内存空间。别把它和栈内存搞混，每个线程都拥有单独的栈内存用来存储本地数据。
+
+### 实现线程
+
+- 继承Thread类
+- 实现Runnable接口
+
 ### 线程的状态
 
 - 创建（new）状态: 准备好了一个多线程的对象
@@ -133,11 +142,102 @@ public class ThreadDeom {
 }
 ```
 
+- run()方法
+
+>run()方法不需要用戶調用，当start方法启动一个线程之后，获得CPU执行时间，便进入run方法。继承Thread必须重写run方法，在run方法里面定义具体执行的任务。
+
+- getId()方法
+
+> 获取线程的唯一标识
+
+```
+System.out.println(Thread.currentThread().getId());
+```
+
+- isAlive()方法 
+
+> 判断当前线程是否处于活动状态。就是还是不是活着！
+
+```
+ public static void main(String[] args) throws InterruptedException {
+        MyThread myThread=new MyThread();
+        System.out.println("begin =="+myThread.isAlive());
+        myThread.start();
+        Thread.sleep(1000);
+        System.out.println("end =="+myThread.isAlive());
+}
+```
+
+- join()方法
+
+> 等待线程对象销毁，主线程等待子线程的终止。在子线程中调用join方法，只有等到子线程结束才能执行主线程。
+
+```
+class MyThread extends Thread {
+
+	public MyThread(String name) {
+		super(name);
+	}
+	@Override
+	public void run() {
+		for (int i = 0; i < 5; i++) {
+			System.out.println(getName() + "  " + i);
+		}
+	}
+}
+public class ThreadDeom {
+
+	public static void main(String[] args) throws InterruptedException {
+		new MyThread("new thread").start();
+		for (int i = 0; i < 10; i++) {
+			if (i == 5) {
+				MyThread th = new MyThread("joined thread");
+				th.start();
+				th.join();
+			}
+			System.out.println(Thread.currentThread().getName() + " - " + i);
+		}
+	}
+}
+```
+
+- getName和setName
+
+> 用来得到或者设置线程名称。
+
+- getPriority和setPriority
+
+> 用来获取和设置线程优先级。
+
+-  setDaemon和isDaemon
+
+> 用来设置线程是否成为守护线程和判断线程是否是守护线程。
 
 
+### 守护线程
 
+- User Thread(用户线程)
+- Daemom Thread(守护线程)
 
+> Daemon的作用是为其他线程的运行提供服务，比如说GC线程。其实User Thread线程和Daemon Thread守护线程本质上来说去没啥区别的，唯一的区别之处就在虚拟机的离开：如果User Thread全部撤离，那么Daemon Thread也就没啥线程好服务的了，所以虚拟机也就退出了。
 
+### 同步、死锁
+
+#### 同步
+
+- 1. 在代码上加个**synchronized**关键字，就是同步代码块
+
+```
+synchronized(同步对象){
+ 	需要同步的代码块;
+}
+```
+
+- 2. 方法也可以同步
+
+```
+public synchronized void test(){} 
+```
 
 
 
