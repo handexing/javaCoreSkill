@@ -41,12 +41,6 @@ public class ExecutorsSimpl {
 		// 关闭线程池
 		pool.shutdown();
 
-		// 获取所有并发任务的运行结果
-		// for (Future f : list) {
-		// // 从Future对象上获取任务的返回值，并输出到控制台
-		// System.out.println(">>>" + f.get().toString());
-		// }
-
 		Date date2 = new Date();
 		System.out.println("----程序结束运行----，程序运行时间【" + (date2.getTime() - date1.getTime()) + "毫秒】");
 	}

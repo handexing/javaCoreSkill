@@ -33,7 +33,7 @@
 
 **如下图：**
 
-![运行实例图](https://github.com/handexing/javaCoreSkill/tree/master/img/thread_running.png)
+![运行实例图](https://handexing.github.io/images/posts/thread_running.png)
 
 ### 线程常用方法
 
@@ -171,6 +171,7 @@ System.out.println(Thread.currentThread().getId());
 - join()方法
 
 > 等待线程对象销毁，主线程等待子线程的终止。在子线程中调用join方法，只有等到子线程结束才能执行主线程。
+**com.handx.thread.join.JoinSimple**这个例子更简单明了
 
 ```
 class MyThread extends Thread {
@@ -239,8 +240,12 @@ synchronized(同步对象){
 public synchronized void test(){} 
 ```
 
+### start方法和run方法的区别？
 
+案例在：**com.handx.thread.StartRunThread**下。
 
+> start方法启动一个新的线程，新线程会执行run方法，start方法不能被重复调用。
+> run方法就是普通方法，可以重复调用，单独调用会在当前线程中执行run方法，不会启动新的线程。
 
 
 
