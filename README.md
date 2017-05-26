@@ -240,6 +240,10 @@ synchronized(同步对象){
 public synchronized void test(){} 
 ```
 
+#### 死锁
+
+> 当一个线程需要一个资源而另一个线程持有该资源的锁时，就会发生死锁。
+
 ### start方法和run方法的区别？
 
 案例在：**com.handx.thread.StartRunThread**下。
