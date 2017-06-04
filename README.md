@@ -248,6 +248,12 @@ public synchronized void test(){}
 
 案例在：**com.handx.thread.StartRunThread**下。
 
+## 设计模式
+
+- Builder Pattern
+
+案例在：**com.handx.java.pattern**下。
+
 > start方法启动一个新的线程，新线程会执行run方法，start方法不能被重复调用。
 > run方法就是普通方法，可以重复调用，单独调用会在当前线程中执行run方法，不会启动新的线程。
 
