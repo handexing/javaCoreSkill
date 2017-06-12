@@ -251,8 +251,17 @@ public synchronized void test(){}
 ## 设计模式
 
 - Builder Pattern
-
 案例在：**com.handx.java.pattern**下。
+
+
+## Timer和TimerTask
+
+### 概念
+
+- Timer是一种定时器工具，用来在一个后台线程计划执行指定任务。它可以计划执行一个任务一次或反复多次。
+TimerTask一个抽象类，它的子类代表一个可以被Timer计划的任务。
+
+
 
 > start方法启动一个新的线程，新线程会执行run方法，start方法不能被重复调用。
 > run方法就是普通方法，可以重复调用，单独调用会在当前线程中执行run方法，不会启动新的线程。
